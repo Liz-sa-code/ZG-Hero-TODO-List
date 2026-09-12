@@ -1,0 +1,24 @@
+plugins {
+    id 'application'
+}
+
+group = 'org.zghero'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass = 'org.zghero.Main'
+}
+
+run {
+    standardInput = System.in
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
