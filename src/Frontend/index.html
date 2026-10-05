@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TODO List</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container">
+        <h1>TODO List</h1>
+        <p>Organize suas tarefas de forma simples e eficiente.</p>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- FORMULÁRIO -->
+    <section class="card">
+
+        <h2 id="form-title">Nova tarefa</h2>
+
+        <form id="task-form">
+
+            <input type="hidden" id="task-id">
+
+            <div class="form-group">
+                <label for="title">Título</label>
+                <input
+                        type="text"
+                        id="title"
+                        placeholder="Digite o título da tarefa"
+                        required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="description">Descrição</label>
+                <textarea
+                        id="description"
+                        rows="4"
+                        placeholder="Digite a descrição da tarefa"
+                        required
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status</label>
+
+                <select id="status" required>
+                    <option value="TODO">TODO</option>
+                    <option value="DOING">DOING</option>
+                    <option value="DONE">DONE</option>
+                </select>
+            </div>
+
+            <div class="form-buttons">
+
+                <button type="submit" class="btn btn-primary">
+                    Salvar tarefa
+                </button>
+
+                <button
+                        type="button"
+                        id="cancel-button"
+                        class="btn btn-secondary hidden"
+                >
+                    Cancelar edição
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+    <!-- CONTADORES -->
+    <section class="statistics">
+
+        <div class="stat-card">
+            <span class="stat-title">Total</span>
+            <strong id="total-count">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-title">TODO</span>
+            <strong id="todo-count">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-title">DOING</span>
+            <strong id="doing-count">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-title">DONE</span>
+            <strong id="done-count">0</strong>
+        </div>
+
+    </section>
+
+    <!-- LISTAGEM -->
+    <section class="card">
+
+        <div class="list-header">
+
+            <div>
+                <h2>Minhas tarefas</h2>
+                <p>Lista de tarefas cadastradas.</p>
+            </div>
+
+            <div class="filter-container">
+
+                <label for="filter">Filtrar:</label>
+
+                <select id="filter">
+                    <option value="ALL">Todas</option>
+                    <option value="TODO">TODO</option>
+                    <option value="DOING">DOING</option>
+                    <option value="DONE">DONE</option>
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+
+                <tbody id="task-list">
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div id="empty-message" class="empty-message">
+            Nenhuma tarefa cadastrada.
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>TODO List - Frontend</p>
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+
+</html>
