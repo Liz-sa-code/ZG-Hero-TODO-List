@@ -28,15 +28,19 @@
      selecionado. Os contadores permaneceram globais e `localStorage` não foi
      alterado pela busca.
 
-3. **Exibir mensagens conforme os critérios ativos**
+3. **[x] Exibir mensagens conforme os critérios ativos**
    - Arquivo: `src/Frontend/js/script.js`.
    - Tratar como busca ativa somente um termo não vazio após `trim`; selecionar
      exatamente uma mensagem para cada estado mutuamente exclusivo: sem
      tarefas, busca e status ativos, somente busca ativa ou somente status
      ativo.
-   - Validação prevista: verificar cada uma das quatro mensagens, confirmar
-     que espaços isolados são busca inativa, que a lista vazia prevalece quando
-     não há tarefas e que nenhuma mensagem aparece quando há resultados.
+   - Validação realizada: no navegador, confirmei as quatro mensagens exatas
+     para lista vazia, busca sem resultados, filtro sem resultados e busca
+     combinada com filtro. A lista sem tarefas teve precedência mesmo com busca
+     e status ativos; espaços isolados foram tratados como busca inativa; a
+     mensagem ficou oculta quando houve resultados. A busca e o filtro
+     anteriores continuaram funcionando, os contadores permaneceram globais
+     (`3`, `0`, `1`, `2`) e `localStorage` permaneceu inalterado.
 
 4. **Fazer uma verificação de regressão do frontend**
    - Arquivos alterados: nenhum; verificar o comportamento em

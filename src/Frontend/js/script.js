@@ -171,9 +171,11 @@ function renderTasks() {
 
     const filter = document.getElementById("filter").value;
 
-    const searchTerm = normalizeSearchText(
-        document.getElementById("title-search").value.trim()
-    );
+    const rawSearchTerm =
+        document.getElementById("title-search").value.trim();
+    const searchTerm = normalizeSearchText(rawSearchTerm);
+    const hasSearch = rawSearchTerm !== "";
+    const hasStatusFilter = filter !== "ALL";
 
     taskList.innerHTML = "";
 
@@ -187,6 +189,19 @@ function renderTasks() {
     });
 
     if (filteredTasks.length === 0) {
+
+        if (tasks.length === 0) {
+            emptyMessage.textContent = "Nenhuma tarefa cadastrada.";
+        } else if (hasSearch && hasStatusFilter) {
+            emptyMessage.textContent =
+                "Nenhuma tarefa corresponde à busca e aos filtros selecionados.";
+        } else if (hasSearch) {
+            emptyMessage.textContent =
+                "Nenhuma tarefa encontrada para essa busca.";
+        } else {
+            emptyMessage.textContent =
+                "Nenhuma tarefa corresponde aos filtros selecionados.";
+        }
 
         emptyMessage.style.display = "block";
 
