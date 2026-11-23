@@ -12,7 +12,7 @@
      do rótulo ao campo e verifiquei a disposição em desktop (1280 px) e móvel
      (390 px), sem overflow horizontal.
 
-2. **Aplicar a busca em conjunto com o filtro de status**
+2. **[x] Aplicar a busca em conjunto com o filtro de status**
    - Arquivo: `src/Frontend/js/script.js`.
    - Atualizar a filtragem da listagem para combinar trecho do título e status.
      Ignorar espaços nas extremidades, diferenças entre maiúsculas/minúsculas e
@@ -20,10 +20,13 @@
      contendo somente espaços não aplica critério de busca.
    - Manter o filtro de status atual; não adicionar filtros de categoria ou
      prioridade. Não alterar tarefas, `localStorage` ou contadores.
-   - Validação prevista: no navegador, verificar busca parcial, diferenças de
-     caixa e acentuação (`reuniao` encontra `Reunião`), espaços externos,
-     entrada somente de espaços, atualização durante a digitação, combinação
-     com cada status e limpeza da busca preservando o status selecionado.
+   - Validação realizada: no navegador, `REUNIAO` encontrou títulos
+     `Reunião` por trecho, sem diferença de caixa ou acento, e espaços externos
+     foram ignorados. Entrada só de espaços exibiu todas as tarefas; os
+     resultados atualizaram durante a digitação (contagens 5, 4 e 3), combinaram
+     corretamente com TODO, DOING e DONE, e limpar a busca preservou o status
+     selecionado. Os contadores permaneceram globais e `localStorage` não foi
+     alterado pela busca.
 
 3. **Exibir mensagens conforme os critérios ativos**
    - Arquivo: `src/Frontend/js/script.js`.

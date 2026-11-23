@@ -155,6 +155,14 @@ function cancelEdit() {
 
 // RENDERIZAR TAREFAS
 
+function normalizeSearchText(text) {
+
+    return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+}
+
 function renderTasks() {
 
     const taskList = document.getElementById("task-list");
@@ -163,17 +171,20 @@ function renderTasks() {
 
     const filter = document.getElementById("filter").value;
 
+    const searchTerm = normalizeSearchText(
+        document.getElementById("title-search").value.trim()
+    );
+
     taskList.innerHTML = "";
 
-    let filteredTasks = tasks;
+    const filteredTasks = tasks.filter(task => {
+        const matchesStatus =
+            filter === "ALL" || task.status === filter;
+        const matchesTitle =
+            normalizeSearchText(task.title).includes(searchTerm);
 
-    if (filter !== "ALL") {
-
-        filteredTasks = tasks.filter(
-            task => task.status === filter
-        );
-
-    }
+        return matchesStatus && matchesTitle;
+    });
 
     if (filteredTasks.length === 0) {
 
@@ -373,6 +384,16 @@ document
 document
     .getElementById("filter")
     .addEventListener("change", function() {
+
+        renderTasks();
+
+    });
+
+// BUSCA POR TÍTULO
+
+document
+    .getElementById("title-search")
+    .addEventListener("input", function() {
 
         renderTasks();
 
