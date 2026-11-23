@@ -42,12 +42,17 @@
      anteriores continuaram funcionando, os contadores permaneceram globais
      (`3`, `0`, `1`, `2`) e `localStorage` permaneceu inalterado.
 
-4. **Fazer uma verificação de regressão do frontend**
-   - Arquivos alterados: nenhum; verificar o comportamento em
+4. **[x] Fazer uma verificação de regressão do frontend**
+   - Arquivos de aplicação alterados: nenhum; verificar o comportamento em
      `src/Frontend/index.html`, `src/Frontend/css/style.css` e
      `src/Frontend/js/script.js`.
-   - Validação prevista: verificar criação, edição, exclusão, filtro por status,
-     contadores e persistência das tarefas em `localStorage`; confirmar que a
-     busca não altera os dados armazenados.
+   - Validação realizada: no navegador, criei três tarefas, editei uma e
+     excluí outra; confirmei o filtro `DOING`, os contadores globais, a busca
+     combinada com status e a persistência após recarregar a página. A busca
+     não alterou `localStorage`; os dados temporários foram removidos e o
+     armazenamento voltou ao estado inicial vazio.
+   - Ocorrência: a primeira execução do Playwright foi interrompida pelo alerta
+     `Tarefa criada com sucesso.`. Retomei a execução diferida; os diálogos do
+     fluxo foram aceitos e as verificações terminaram com sucesso.
    - Não há suíte de testes automatizados identificada no projeto; a validação
      prevista é manual no navegador, sem adicionar dependências ou tooling.
