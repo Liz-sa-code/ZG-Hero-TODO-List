@@ -155,6 +155,14 @@ function cancelEdit() {
 
 // RENDERIZAR TAREFAS
 
+function normalizeSearchText(text) {
+
+    return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+}
+
 function renderTasks() {
 
     const taskList = document.getElementById("task-list");
@@ -163,19 +171,37 @@ function renderTasks() {
 
     const filter = document.getElementById("filter").value;
 
+    const rawSearchTerm =
+        document.getElementById("title-search").value.trim();
+    const searchTerm = normalizeSearchText(rawSearchTerm);
+    const hasSearch = rawSearchTerm !== "";
+    const hasStatusFilter = filter !== "ALL";
+
     taskList.innerHTML = "";
 
-    let filteredTasks = tasks;
+    const filteredTasks = tasks.filter(task => {
+        const matchesStatus =
+            filter === "ALL" || task.status === filter;
+        const matchesTitle =
+            normalizeSearchText(task.title).includes(searchTerm);
 
-    if (filter !== "ALL") {
-
-        filteredTasks = tasks.filter(
-            task => task.status === filter
-        );
-
-    }
+        return matchesStatus && matchesTitle;
+    });
 
     if (filteredTasks.length === 0) {
+
+        if (tasks.length === 0) {
+            emptyMessage.textContent = "Nenhuma tarefa cadastrada.";
+        } else if (hasSearch && hasStatusFilter) {
+            emptyMessage.textContent =
+                "Nenhuma tarefa corresponde à busca e aos filtros selecionados.";
+        } else if (hasSearch) {
+            emptyMessage.textContent =
+                "Nenhuma tarefa encontrada para essa busca.";
+        } else {
+            emptyMessage.textContent =
+                "Nenhuma tarefa corresponde aos filtros selecionados.";
+        }
 
         emptyMessage.style.display = "block";
 
@@ -373,6 +399,16 @@ document
 document
     .getElementById("filter")
     .addEventListener("change", function() {
+
+        renderTasks();
+
+    });
+
+// BUSCA POR TÍTULO
+
+document
+    .getElementById("title-search")
+    .addEventListener("input", function() {
 
         renderTasks();
 
