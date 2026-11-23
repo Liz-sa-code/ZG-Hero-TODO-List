@@ -115,17 +115,28 @@
                 <p>Lista de tarefas cadastradas.</p>
             </div>
 
-            <div class="filter-container">
+            <div class="list-controls">
+                <div class="filter-container">
 
-                <label for="filter">Filtrar:</label>
+                    <label for="filter">Filtrar:</label>
 
-                <select id="filter">
-                    <option value="ALL">Todas</option>
-                    <option value="TODO">TODO</option>
-                    <option value="DOING">DOING</option>
-                    <option value="DONE">DONE</option>
-                </select>
+                    <select id="filter">
+                        <option value="ALL">Todas</option>
+                        <option value="TODO">TODO</option>
+                        <option value="DOING">DOING</option>
+                        <option value="DONE">DONE</option>
+                    </select>
 
+                </div>
+
+                <div class="search-container">
+                    <label for="title-search">Buscar por título:</label>
+                    <input
+                            type="search"
+                            id="title-search"
+                            placeholder="Digite um título"
+                    >
+                </div>
             </div>
 
         </div>

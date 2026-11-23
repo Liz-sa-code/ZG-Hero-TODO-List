@@ -64,7 +64,8 @@ body {
 .form-group input,
 .form-group textarea,
 .form-group select,
-.filter-container select {
+.filter-container select,
+.search-container input {
     width: 100%;
     padding: 11px;
     border: 1px solid #d1d5db;
@@ -80,7 +81,8 @@ body {
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus,
-.filter-container select:focus {
+.filter-container select:focus,
+.search-container input:focus {
     outline: none;
     border-color: #2563eb;
 }
@@ -187,7 +189,21 @@ body {
     color: #6b7280;
 }
 
+.list-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
 .filter-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-container {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -197,8 +213,18 @@ body {
     font-weight: bold;
 }
 
+.search-container label {
+    font-weight: bold;
+    white-space: nowrap;
+}
+
 .filter-container select {
     width: 150px;
+}
+
+.search-container input {
+    width: 240px;
+    min-width: 0;
 }
 
 /* TABELA */
@@ -296,11 +322,23 @@ footer {
         align-items: flex-start;
     }
 
-    .filter-container {
+    .list-controls {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .filter-container,
+    .search-container {
         width: 100%;
     }
 
     .filter-container select {
+        flex: 1;
+    }
+
+    .search-container input {
         flex: 1;
     }
 }
